@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    AudioSource audioSource;
+    [SerializeField] AudioClip gameStartingClip;
+    [SerializeField] AudioClip poweringDownClip;
+    [SerializeField] AudioClip scoreClip;
+
     [SerializeField] GameObject spaceshipPrefab;
     GameObject player1;
     GameObject player2;
@@ -43,6 +48,8 @@ public class GameManager : MonoBehaviour
 
         m_instance = this;
         DontDestroyOnLoad(gameObject);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -64,6 +71,13 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                if (timer < 3.0f && !audioSource.isPlaying)
+                {
+                    audioSource.clip = poweringDownClip;
+                    audioSource.volume = 0.4f;
+                    audioSource.Play();
+                }
+
                 if (timerObject)
                 {
                     Vector3 newScale = timerObject.transform.localScale;
@@ -76,6 +90,9 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator OnGameStart()
     {
+        audioSource.clip = gameStartingClip;
+        audioSource.volume = 0.2f;
+        audioSource.Play();
         yield return new WaitForSeconds(timeToStart);
         isGameOver = false;
         score1 = 0;
@@ -116,6 +133,10 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(string playerTag)
     {
+        audioSource.clip = scoreClip;
+        audioSource.volume = 0.4f;
+        audioSource.Play();
+
         if (playerTag == "Player1")
         {
             ResetPositionPlayer("Player1");
