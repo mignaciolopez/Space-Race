@@ -46,7 +46,8 @@ public class ScreenWrapper : MonoBehaviour
         {
             newPosition.y = -newPosition.y;
             //isWrappingY = true;
-            Debug.Log($"{name} isWrappingY");
+            //Debug.Log($"{name} isWrappingY");
+            GameManager.instance.UpdateScore(gameObject.tag);
         }
 
         transform.position = newPosition;

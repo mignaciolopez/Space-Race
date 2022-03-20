@@ -5,39 +5,142 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject spaceshipPrefab;
+    GameObject player1;
+    GameObject player2;
+
+    [SerializeField] float time = 120f;
+    float timer = 120f;
+    [SerializeField] GameObject timerPrefab;
+    GameObject timerObject;
+
+    [SerializeField] float timeToStart = 5.0f;
+
+    [HideInInspector] public int score1, score2;
+
+    bool isGameOver = false;
+
+    static GameManager m_instance;
+    public static GameManager instance
+    {
+        get
+        {
+            if (!m_instance)
+            {
+                GameObject manager = new GameObject("GameManager");
+                manager.AddComponent<GameManager>();
+            }
+            return m_instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (m_instance)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        m_instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        OnGameStart();
+        StartCoroutine(OnGameStart());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!isGameOver)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer <= 0.0f)
+            {
+                OnGameOver();
+            }
+            else
+            {
+                if (timerObject)
+                {
+                    Vector3 newScale = timerObject.transform.localScale;
+                    newScale.y = (timer * timerPrefab.transform.localScale.y) / time;
+                    timerObject.transform.localScale = newScale;
+                }
+            }
+        }
     }
 
-    public void OnGameStart()
+    public IEnumerator OnGameStart()
     {
+        yield return new WaitForSeconds(timeToStart);
+        isGameOver = false;
+        score1 = 0;
+        score2 = 0;
         SpawnPlayers();
-        
+        timerObject = Instantiate(timerPrefab);
+        timer = time;
+    }
+
+    private void OnGameOver()
+    {
+        isGameOver = true;
+        Destroy(player1);
+        Destroy(player2);
+        Destroy(timerObject);
+        StartCoroutine(OnGameStart());
     }
 
     private void SpawnPlayers()
     {
         //Player 1 (Left Side) as in prefab
-        GameObject player1 = Instantiate(spaceshipPrefab);
+        player1 = Instantiate(spaceshipPrefab);
         player1.name += " Player1";
         player1.GetComponent<PlayerController>().axisName = "Vertical";
+        player1.tag = "Player1";
 
         //Player 2 (Right Side) negate position.x to place in the oposite side of screen
-        GameObject player2 = Instantiate(spaceshipPrefab);
+        player2 = Instantiate(spaceshipPrefab);
         player2.name += " Player2";
         player2.GetComponent<PlayerController>().axisName = "Vertical2";
+        player2.tag = "Player2";
 
         Vector2 pos = player2.transform.position;
         pos.x *= -1;
         player2.transform.position = pos;
+
+    }
+
+    public void UpdateScore(string playerTag)
+    {
+        if (playerTag == "Player1")
+        {
+            ResetPositionPlayer("Player1");
+            score1++;
+        }
+        else if (playerTag == "Player2")
+        {
+            ResetPositionPlayer("Player2");
+            score2++;
+        }
+    }
+
+    public void ResetPositionPlayer(string playerTag)
+    {
+        if (playerTag == "Player1")
+        {
+            player1.transform.position = spaceshipPrefab.transform.position;
+        }
+        else if (playerTag == "Player2")
+        {
+            player2.transform.position = spaceshipPrefab.transform.position;
+            Vector2 pos = player2.transform.position;
+            pos.x *= -1;
+            player2.transform.position = pos;
+
+        }
     }
 }

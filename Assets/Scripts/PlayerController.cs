@@ -18,4 +18,10 @@ public class PlayerController : MonoBehaviour
 
         transform.position = pos;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Asteroid"))
+            GameManager.instance.ResetPositionPlayer(tag);
+    }
 }
