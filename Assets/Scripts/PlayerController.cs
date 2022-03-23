@@ -26,9 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Asteroid"))
         {
-            //audioSourceCollision.volume = 0.4f;
-            //audioSourceCollision.clip = collisionClip;
-            //audioSourceCollision.Play();
+            GameManager.instance.PlayCrashClip();
             GameManager.instance.ResetPositionPlayer(tag);
         }
     }

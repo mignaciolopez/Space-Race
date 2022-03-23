@@ -10,12 +10,13 @@ public class SineWaveGenerator : MonoBehaviour
     public float sampleRate = 256000f;
     public float waveLengthInSeconds = 1f;
 
-    [SerializeField] float offOn = 0.125f;
+    [SerializeField] float offOn = 0.15f;
 
     [SerializeField] AudioSource audioSource;
     float phase = 0;
 
     float elapsedTime = 0f;
+    bool playing = true;
 
     void Update()
     {
@@ -29,15 +30,8 @@ public class SineWaveGenerator : MonoBehaviour
         {
             elapsedTime = 0f;
 
-            if (!audioSource.clip)
-            {
-                if (!audioSource.isPlaying)
-                {
-                    audioSource.Play();
-                }
-                else
-                    audioSource.Pause();
-            }
+            audioSource.volume = (playing) ? 0f : 0.1f;
+            playing = (playing) ? false : true;
         }
     }
 

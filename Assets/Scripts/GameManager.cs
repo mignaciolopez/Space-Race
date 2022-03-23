@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip gameStartingClip;
     [SerializeField] AudioClip poweringDownClip;
     [SerializeField] AudioClip scoreClip;
+    [SerializeField] AudioClip crashClip;
 
     [SerializeField] GameObject spaceshipPrefab;
     GameObject player1;
@@ -163,5 +164,12 @@ public class GameManager : MonoBehaviour
             player2.transform.position = pos;
 
         }
+    }
+
+    public void PlayCrashClip()
+    {
+        audioSource.clip = crashClip;
+        audioSource.volume = 0.4f;
+        audioSource.Play();
     }
 }
