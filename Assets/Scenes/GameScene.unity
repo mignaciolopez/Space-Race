@@ -545,6 +545,8 @@ MonoBehaviour:
   poweringDownClip: {fileID: 8300000, guid: 137c0ad2b3d5c3146a48d6530a3e22b1, type: 3}
   scoreClip: {fileID: 8300000, guid: d31bacfe6a0935b449f374fed9bb6567, type: 3}
   spaceshipPrefab: {fileID: 590476830309197986, guid: 837e40722cfa3934b9f072b38fd85025, type: 3}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
   time: 120
   timerPrefab: {fileID: 6899542760590079408, guid: d11c947220462854fbbf33d1d2d88bcd, type: 3}
   timeToStart: 5
