@@ -541,14 +541,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e9c1fb2e0b7d44995b83ae5a515a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStartingClip: {fileID: 8300000, guid: 3d34157f374ee9f42a41bea65cd55d49, type: 3}
+  gameStartingClip: {fileID: 8300000, guid: c5570e6705a594345a5ce0de0e75058f, type: 3}
   poweringDownClip: {fileID: 8300000, guid: 137c0ad2b3d5c3146a48d6530a3e22b1, type: 3}
   scoreClip: {fileID: 8300000, guid: d31bacfe6a0935b449f374fed9bb6567, type: 3}
   crashClip: {fileID: 8300000, guid: 647bbda710c831143a83718fd2bbf49c, type: 3}
   spaceshipPrefab: {fileID: 590476830309197986, guid: 837e40722cfa3934b9f072b38fd85025, type: 3}
   time: 120
   timerPrefab: {fileID: 6899542760590079408, guid: d11c947220462854fbbf33d1d2d88bcd, type: 3}
-  timeToStart: 5
   score1: 0
   score2: 0
 --- !u!4 &1165917363
@@ -575,7 +574,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3d34157f374ee9f42a41bea65cd55d49, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c5570e6705a594345a5ce0de0e75058f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1

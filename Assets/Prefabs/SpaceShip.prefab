@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7778159597361209136}
   - component: {fileID: -8001312849813020784}
   - component: {fileID: 8255591126253393080}
-  - component: {fileID: 5305759318263409374}
+  - component: {fileID: -7458697576187966025}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -175,10 +175,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_PlayOnAwake: 0
+  m_Volume: 0.15
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -220,7 +220,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.6
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -272,12 +272,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d29f0cdcf28bc24d831673a7fd2ec6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 1500
-  sampleRate: 256000
-  waveLengthInSeconds: 1
-  offOn: 0.15
   audioSource: {fileID: -8001312849813020784}
---- !u!169 &5305759318263409374
+  frequency: 135
+  samplerate: 44100
+  toggleTime: 0.135
+  pitchDelta: 10
+--- !u!169 &-7458697576187966025
 AudioLowPassFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,7 +292,7 @@ AudioLowPassFilter:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.022282856
+      value: 0.040472943
       inSlope: 0
       outSlope: 0
       tangentMode: 0

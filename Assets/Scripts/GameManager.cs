@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject timerPrefab;
     GameObject timerObject;
 
-    [SerializeField] float timeToStart = 5.0f;
-
     [HideInInspector] public int score1, score2;
 
     bool isGameOver = false;
@@ -92,9 +90,9 @@ public class GameManager : MonoBehaviour
     public IEnumerator OnGameStart()
     {
         audioSource.clip = gameStartingClip;
-        audioSource.volume = 0.2f;
+        audioSource.volume = 0.5f;
         audioSource.Play();
-        yield return new WaitForSeconds(timeToStart);
+        yield return new WaitForSeconds(gameStartingClip.length);
         isGameOver = false;
         score1 = 0;
         score2 = 0;

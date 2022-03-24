@@ -33,7 +33,7 @@ public class Spawner : MonoBehaviour
                 Vector2 spawnPos = transform.position;
                 spawnPos.y = Random.Range(transform.position.y - boxCollider.size.y / 2.0f, transform.position.y + boxCollider.size.y / 2.0f);
 
-                Instantiate(prefab, spawnPos, prefab.transform.rotation);
+                Instantiate(prefab, spawnPos, prefab.transform.rotation).transform.parent = transform.parent;
 
                 count++;
             }
